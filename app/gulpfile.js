@@ -29,6 +29,13 @@ gulp.task('sass', function() {
     }))
 });
 
+gulp.task('css', function() {
+  return gulp.src('scss/**/*.scss')
+    .pipe(sass())
+    .pipe(cssnano())
+    .pipe(gulp.dest('dist/css'))
+});
+
 gulp.task('php', function() {
   php.server({
     base: 'app',
@@ -88,6 +95,14 @@ gulp.task('clean:dist', function() {
 gulp.task('build', function(callback) {
   runSequence('clean:dist',
     ['sass', 'useref', 'images', 'fonts'],
+    callback
+  )
+});
+
+// build project
+gulp.task('prod', function(callback) {
+  runSequence('clean:dist',
+    ['css', 'useref', 'images', 'fonts'],
     callback
   )
 });
