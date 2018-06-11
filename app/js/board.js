@@ -215,7 +215,8 @@ function createButtonWrapper (){
 }
 
 function cycleButtonColors(i){
-  var options = ['primary','success','info','warning','danger'];
+  // add more button colors here if wanted
+  var options = ['primary'];
   var random = options[Math.floor(Math.random() * options.length)];
   var selected = options[i%options.length];
   return selected;
